@@ -26,8 +26,9 @@ public class Ej5 {
     public static void main(String[] args) {
         
         Cuenta cuenta = createAccount();
-        
         addCash(cuenta);
+        retireCash(cuenta);
+        fastRetireCash(cuenta); // "extraccion rapida"
     }
 
     private static Cuenta createAccount(){
@@ -46,9 +47,20 @@ public class Ej5 {
     
     private static void addCash(Cuenta cuenta){
         
-        double saldoASumar = sc.nextDouble();
         System.out.println("Ahora ingrese el monto a aumentar");
-        cuenta.addCash(saldoASumar);
+        double saldoASumar = sc.nextDouble();
+        cuenta.addCash(cuenta, saldoASumar);
         System.out.println("Monto aumentado a: " + cuenta.getSaldoActual());
     }
+    
+    private static void retireCash(Cuenta cuenta){
+        
+        System.out.println("Ahora ingrese el monto a retirar");
+        double saldoARestar = sc.nextDouble();
+        cuenta.retireCash(cuenta, saldoARestar);
+        System.out.println("Monto restante es de: " + cuenta.getSaldoActual());
+    }
+    
+    
+    
 }

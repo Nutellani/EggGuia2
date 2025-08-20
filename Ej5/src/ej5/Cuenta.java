@@ -14,7 +14,38 @@ public class Cuenta {
         this.DNI = DNI;
         this.saldoActual = saldoActual;
     }
+
+    public int getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    public void setNumeroCuenta(int numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    public long getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(long DNI) {
+        this.DNI = DNI;
+    }
+
+    public double getSaldoActual() {
+        return saldoActual;
+    }
+
+    public void setSaldoActual(double saldoActual) {
+        this.saldoActual = saldoActual;
+    }
     
+    /////    METHODS    /////
     
+    public void addCash(Cuenta cuenta, double saldoASumar){
+        saldoActual += saldoASumar;
+    }
     
+    public void retireCash(Cuenta cuenta, double saldoARestar){
+        saldoActual -= saldoARestar;
+    }
 }
