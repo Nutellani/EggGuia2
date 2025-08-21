@@ -69,10 +69,10 @@ public class Ej7 {
         do {
             System.out.println("Ingrese su edad");
             age = sc.nextLine().toUpperCase().charAt(0);
-            if (!(age < 1 || age > 100)) {
+            if (age < 1 || 100 < age) {
                 System.out.println("Menos de cero o mayor q 100 bro?? ");
             }
-        } while (!(age == 'H' || age == 'M'));
+        } while (age < 1 || 100 < age);
 
         return age;
     }
