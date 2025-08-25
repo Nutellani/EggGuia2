@@ -2,9 +2,9 @@ package ej5;
 
 public class Cuenta {
     
-    int numeroCuenta;
-    long DNI;
-    double saldoActual;
+    private int numeroCuenta;
+    private long DNI;
+    private double saldoActual;
 
     public Cuenta() {
     }

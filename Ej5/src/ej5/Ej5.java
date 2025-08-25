@@ -77,7 +77,7 @@ public class Ej5 {
     private static void fastRetireCash(Cuenta cuenta){
         System.out.println("EXTRACCIÓN RÁPIDA: Cuanto desea retirar?? ");
         double saldoARestar = sc.nextDouble();
-        if (saldoARestar > cuenta.saldoActual*0.2) {
+        if (saldoARestar > (cuenta.getSaldoActual()*0.2)) {
             System.out.println("No puede retirar mas del 20 %");
             return ;
         }
