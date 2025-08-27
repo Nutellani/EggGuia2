@@ -31,5 +31,4 @@ public class Cadena {
         this.phraseLength = phraseLength;
     }
     
-    
 }
