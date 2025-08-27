@@ -22,27 +22,30 @@ mostrar la frase resultante.
 • Método contiene(String letra), deberá comprobar si la frase contiene una letra que
 ingresa el usuario y devuelve verdadero si la contiene y falso si no.
  */
-package ej8;
+package ej8_1;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-public class Ej8 {
+public class Ej8_1 {
 
     static Scanner sc = new Scanner(System.in).useDelimiter("\n"); // creo una variable aca fuera del main, dentro de la clase y estatico para que agarre a toda la clase, se pueda usar en toda la clase no solo en el main :)
 
     public static void main(String[] args) {
 
         Cadena phrase = new Cadena();
-        Cadena phrase2 = new Cadena();
         iniciatePhrase(phrase);
-        char[] vector = new char[phrase.getPhraseLength()];
         mostrarVocales(phrase);
         invertirPhrase(phrase);
         vecesRepetido(phrase);
+        reemplazar(phrase);
+        contiene(phrase);
+
+        Cadena phrase2 = new Cadena();
         compararLongitud(phrase, phrase2);
         unirPhrases(phrase, phrase2);
-        reemplazar(phrase, vector);
-        System.out.println("Su 1ra frase contiene la letra: " +contiene(vector));
+
     }
 
     private static void iniciatePhrase(Cadena phrase) {
@@ -61,25 +64,9 @@ public class Ej8 {
     }
 
     private static int switchVocals(char vocal) {
-        
-         switch (vocal) {
+        List<String> lista = Arrays.asList("A", "E", "I", "O", "U");
 
-            case 'A':
-                return 1;
-
-            case 'E':
-                return 1;
-
-            case 'I':
-                return 1;
-
-            case 'O':
-                return 1;
-
-            case 'U':
-                return 1;
-        }
-        return 0;        
+        return lista.contains("" + vocal) ? 1 : 0;
     }
 
     private static void invertirPhrase(Cadena phrase) {
@@ -122,39 +109,30 @@ public class Ej8 {
         System.out.println("Frases unidas: " + phrase.getPhrase() + " " + phrase2.getPhrase());
     }
 
-    private static void reemplazar(Cadena phrase, char[] vector) {
-        System.out.println("De la 1ra frase, sobre qué letra quiere reemplazar/las??");
+    private static void reemplazar(Cadena phrase) {
+
+        System.out.print("De su frase, sobre qué letra quiere reemplazar/las?? ");
         String aux = sc.next().toUpperCase();
-        char letterToChange = aux.charAt(0);
-
-        System.out.println("Y por que letras va a remplazarla/as");
+        String letterToChange = aux.substring(0, 1);
+        System.out.print("Y por que letras va a remplazarla/as ");
         aux = sc.next().toUpperCase();
-        char newLetter = aux.charAt(0);
+        String newLetter = aux.substring(0, 1);
 
-        for (int i = 0; i < vector.length; i++) {
-            vector[i] = phrase.getPhrase().charAt(i);
-            if (vector[i] == letterToChange) {
-                vector[i] = newLetter;
-            }
-        }
+        phrase.setPhrase(phrase.getPhrase().replaceAll(letterToChange, newLetter));
 
-        System.out.println("Frase cambiada:");
-        for (int i = 0; i < vector.length; i++) {
-            System.out.print(vector[i]);
-        }
-        System.out.println();
+        System.out.println("Frase cambiada: " + phrase.getPhrase());
     }
 
-    private static boolean contiene(char[] vector) {
+    private static void contiene(Cadena phrase) {
         System.out.println("Que letra desea buscar chikitin ?? ¿)");
-        String aux = sc.next().toUpperCase();
-        char letterToSearch = aux.charAt(0);
-        for (int i = 0; i < vector.length; i++) {
-            if (vector[i] == letterToSearch) {
-                return true;
-            }
+        String letterToSearch = sc.next().toUpperCase().substring(0, 1);
+        
+        boolean contieneLetra = phrase.getPhrase().contains(letterToSearch);        
+        if (contieneLetra) {
+            System.out.println("Su frase SIS contiene la letra " + letterToSearch);
+            return;   
         }
-        return false;
+        System.out.println("Su frase NON contiene la letra " + letterToSearch);
     }
 
 }
